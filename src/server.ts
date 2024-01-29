@@ -1,14 +1,19 @@
 import express from 'express';
 import { MongoConnection } from './database/mongo-connection';
+import { routes } from './routes/routes';
+import dotenv from 'dotenv'
 
-const server = express();
-const port = 3000;
+dotenv.config()
+
 MongoConnection.initialize()
 
-server.get('/', (req, res) => {
-    res.send('Hello, world!');
-})
+const server = express();
+const port = process.env.PORT || 3000;
 
-server.listen(port, () => {
-    console.log(`server listening on http://localhost:${port}`);
-})
+server.use(express.json())
+
+server.use(routes)
+
+
+
+server.listen(port, () => console.log(`server listening on port ${port}`))
