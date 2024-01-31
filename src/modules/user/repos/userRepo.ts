@@ -12,6 +12,11 @@ export class UserRepository implements IUserRepository {
         const users = await this.userModel.find({ deletedAt: null })
         return users
     }
+    async getAllDeleted(): Promise<User[]> {
+        const users = await this.userModel.find({ deletedAt: { $ne: null } })
+        console.log(users)
+        return users
+    }
     async getByEmail(email: string): Promise<User | null> {
         const user = await this.userModel.findOne({ email: email })
         return user

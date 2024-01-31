@@ -5,6 +5,8 @@ import { User } from "../models/userModel";
 export interface IUserRepository {
     getAll(): Promise<Array<User>>
 
+    getAllDeleted(): Promise<Array<User>>
+
     getByEmail(email: string): Promise<User | null>
     getById(id: string): Promise<User | null>
     create(userData: CreateUserDTO): Promise<User | null>

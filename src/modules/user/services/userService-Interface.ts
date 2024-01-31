@@ -5,6 +5,7 @@ import { User } from "../models/userModel";
 
 export interface IUserService {
     getAll(): Promise<Array<User>>
+    getAllDeleted(): Promise<Array<User>>
     getByEmail(email: string): Promise<User>
     getById(id: string): Promise<User>
     create(userData: CreateUserDTO): Promise<User>

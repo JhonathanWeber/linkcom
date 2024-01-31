@@ -17,6 +17,12 @@ export class UserService implements IUserService {
         return users
     }
 
+    async getAllDeleted(): Promise<User[]> {
+        const users = await this.userRepository.getAllDeleted()
+        if (!users || users.length === 0) throw new Error('Users not found!')
+        return users
+    }
+
     async getByEmail(email: string): Promise<User> {
         const user = await this.userRepository.getByEmail(email)
         if (!user) throw new Error('User not found.')
