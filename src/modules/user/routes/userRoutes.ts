@@ -18,3 +18,5 @@ userRoutes.put('/user/:id', userModule.update.bind(userModule))
 
 userRoutes.put('/user/delete/:id', userModule.softDelete.bind(userModule))
 
+userRoutes.put('/user/activate/:id', userModule.activateUser.bind(userModule))
+

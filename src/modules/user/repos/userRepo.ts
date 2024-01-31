@@ -39,4 +39,12 @@ export class UserRepository implements IUserRepository {
         return deleteUser
     }
 
+    async activateUser(id: string): Promise<User | null> {
+        if (!isValidObjectId(id)) {
+            throw new Error(`Id ${id} is not valid.`)
+        }
+        const activateUser = await this.userModel.findByIdAndUpdate(id, { deletedAt: null }, { new: true })
+        return activateUser
+    }
+
 }

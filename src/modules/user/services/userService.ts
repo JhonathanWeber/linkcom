@@ -51,4 +51,14 @@ export class UserService implements IUserService {
         if (!deleteUser) throw new Error('Cannot delete user.')
         return deleteUser
     }
+
+    async activateUser(id: string): Promise<User> {
+        const user = await this.userRepository.getById(id)
+        if (!user) throw new Error('User not found')
+        const activateUser = await this.userRepository.activateUser(id)
+        if (!activateUser) throw new Error('Cannot activated user.')
+        return activateUser
+
+    }
+
 }

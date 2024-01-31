@@ -10,4 +10,5 @@ export interface IUserService {
     create(userData: CreateUserDTO): Promise<User>
     update(id: string, newUserData: UpdateUserDTO): Promise<User>
     softDelete(id: string): Promise<User>
+    activateUser(id: string): Promise<User>
 }

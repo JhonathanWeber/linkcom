@@ -10,4 +10,5 @@ export interface IUserRepository {
     create(userData: CreateUserDTO): Promise<User | null>
     update(id: string, newUserData: UpdateUserDTO): Promise<User | null>
     softDelete(id: string): Promise<User | null>
+    activateUser(id: string): Promise<User | null>
 }

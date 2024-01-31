@@ -7,4 +7,5 @@ export interface IUserController {
     create(req: Request, res: Response): Promise<void>
     update(req: Request, res: Response): Promise<void>
     softDelete(req: Request, res: Response): Promise<void>
+    activateUser(req: Request, res: Response): Promise<void>
 }

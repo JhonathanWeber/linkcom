@@ -75,4 +75,13 @@ export class UserController implements IUserController {
 
         }
     }
+    async activateUser(req: Request, res: Response): Promise<void> {
+        try {
+            const { id } = req.params
+            const activateUser = await this.userService.activateUser(id)
+            res.status(200).json(activateUser)
+        } catch (error: any) {
+            res.status(500).json(error)
+        }
+    }
 }
