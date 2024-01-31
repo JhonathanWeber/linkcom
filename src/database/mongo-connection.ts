@@ -1,18 +1,18 @@
-import { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 import "dotenv/config";
 
-const db = new Mongoose()
+const db = mongoose;
 
 export class MongoConnection {
 
     static async initialize() {
         try {
-            db.connection.on('connected', () => console.log('Connected to MongoDB Cloud - Atlas!'))
-                .on('open', () => console.log('Open connection to MongoDB Cloud - Atlas!'))
-                .on('close', () => console.log('Close connection to MongoDB Cloud - Atlas!'));
-            // db.connection.on('disconnected', () => console.log('disconnected from MongoDB Cloud - Atlas!'));
-            // db.connection.on('reconnected', () => console.log('Reconnected from MongoDB Cloud - Atlas!'));
-            // db.connection.on('disconnecting', () => console.log('Disconnecting from MongoDB Cloud - Atlas!'));
+            db.connection.on('connected', () => console.log('Connected to MongoDB Cloud - Atlas!'));
+            db.connection.on('open', () => console.log('Open connection to MongoDB Cloud - Atlas!'));
+            db.connection.on('close', () => console.log('Close connection to MongoDB Cloud - Atlas!'));
+            db.connection.on('disconnected', () => console.log('disconnected from MongoDB Cloud - Atlas!'));
+            db.connection.on('reconnected', () => console.log('Reconnected from MongoDB Cloud - Atlas!'));
+            db.connection.on('disconnecting', () => console.log('Disconnecting from MongoDB Cloud - Atlas!'));
 
             await db.connect(process.env.MONGO_URL as string, {
                 serverSelectionTimeoutMS: 5000,

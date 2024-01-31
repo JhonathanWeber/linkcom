@@ -33,14 +33,15 @@ export class UserService implements IUserService {
         userData.password = await bcrypt.hash(userData.password, 10)
         const newUser = await this.userRepository.create(userData)
         if (!newUser) throw new Error('Cannot create user.')
-        // console.log(newUser)
         return newUser
     }
 
     async update(id: string, newUserData: UpdateUserDTO): Promise<User> {
         const user = await this.userRepository.getById(id)
         if (!user) throw new Error('User not found.')
-        return user
+        const updateUser = await this.userRepository.update(id, newUserData)
+        if (!updateUser) throw new Error('Cannot update user.')
+        return updateUser
     }
 
     async softDelete(id: string): Promise<User> {

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { IUserController } from './userController-interface';
 import { IUserService } from '../services/userService-Interface';
-import { createUserValidator } from '../utils/createUserValidator';
+import { createUserValidator, updateUserValidator } from '../utils/createUserValidator';
 
 export class UserController implements IUserController {
     constructor(private userService: IUserService) { }
@@ -40,10 +40,8 @@ export class UserController implements IUserController {
     async create(req: Request, res: Response): Promise<void> {
         try {
             const { body } = req;
-            console.log(body, { 'body': 'body' })
             await createUserValidator.validate(body, { abortEarly: false })
             const user = await this.userService.create(body)
-            console.log(user)
             res.status(201).json(user)
         } catch (error: any) {
             res.status(500).json(error)
@@ -56,7 +54,10 @@ export class UserController implements IUserController {
         try {
             const { id } = req.params
             const { body } = req
+            console.log(body)
+            await updateUserValidator.validate(body, { abortEarly: false })
             const updateUser = await this.userService.update(id, body)
+            // console.log(updateUser)
             res.status(200).json(updateUser)
 
         } catch (error: any) {

@@ -13,6 +13,10 @@ const userSchema = new Schema({
     password: {
         type: "string",
         required: true,
+    },
+    deletedAt: {
+        type: Date,
+        default: null
     }
 }, {
     timestamps: true,

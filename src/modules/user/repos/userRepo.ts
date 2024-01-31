@@ -9,7 +9,7 @@ export class UserRepository implements IUserRepository {
     constructor(private userModel: Model<User>) { }
 
     async getAll(): Promise<User[]> {
-        const users = await this.userModel.find()
+        const users = await this.userModel.find({ deletedAt: null })
         return users
     }
     async getByEmail(email: string): Promise<User | null> {
@@ -21,9 +21,7 @@ export class UserRepository implements IUserRepository {
         return user
     }
     async create(userData: CreateUserDTO): Promise<User | null> {
-        // console.log(userData, { message: 'line 24' })
         const newUser = await this.userModel.create(userData)
-        // console.log(newUser, { message: 'line 26' })
         return newUser
     }
     async update(id: string, newUserData: UpdateUserDTO): Promise<User | null> {

@@ -1,13 +1,10 @@
 import { Router } from "express";
 import { userRoutes } from "../modules/user/routes/userRoutes";
-import { AuthController } from "../modules/auth/controllers/authController";
 
-export const routes = Router()
-
-//----------------------------------------------------------------------------
-
-// routes.post('/login')
+export const router = Router()
 
 //----------------------------------------------------------------------------
 
-routes.use(userRoutes)
+//----------------------------------------------------------------------------
+
+router.use(userRoutes)

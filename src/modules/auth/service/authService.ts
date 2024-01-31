@@ -2,9 +2,9 @@
 import bcrypt from 'bcrypt';
 import { IUserRepository } from '../../user/repos/userRepo-interface';
 import { LoginDTO } from '../dtos/login-dtos';
-import { UserRepository } from './../../user/repos/userRepo';
 import jwt from 'jsonwebtoken';
 import { IAuthService } from './authService-Interface';
+import 'dotenv/config';
 
 
 export class AuthService implements IAuthService {
@@ -37,9 +37,6 @@ export class AuthService implements IAuthService {
         const token = jwt.sign(payload, secretKey, options)
 
         return token
-
-
-
 
     }
 }
